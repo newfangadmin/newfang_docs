@@ -1,2 +1,2 @@
-# newfang_docs
-Newfang Documentation
+# Initial page
+
