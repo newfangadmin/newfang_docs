@@ -1,4 +1,8 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Introduction](README.md)
+* [Getting Started](getting-started.md)
+* [SDKs](sdks/README.md)
+  * [Web SDK](sdks/web-sdk.md)
+  * [Node JS SDK](sdks/node-js-sdk.md)
 
