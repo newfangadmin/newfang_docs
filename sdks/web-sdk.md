@@ -80,7 +80,7 @@ const Downloader = window.newfang_downloader.default;
 // and useWorkers boolean
 // Download types are 'chunked' for chunked downloads or
 // 'stream' for piped streaming download
-// useWorkers: true will utilize the HTML5 Web Workers feature
+// useWorkers: true will utilize the Web Workers API
 downloader = new Downloader(uri, {
     downloadPath: "/path/to/download",
     type: "Download",
