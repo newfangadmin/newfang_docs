@@ -2,23 +2,28 @@
 
 The Newfang SDK for Web Apps.
 
-### Installation
+## Installation
 
 Download your SDK from [Dev Portal](https://developer.newfang.io) and place it in your project code.
 
-### Usage
+## Usage
 
-#### Getting Started
+### Getting Started
 
-Add your library to the html
+Add the libraries you need in your html.
 
 ```markup
+//For single file downloads
 <script src="../path/to/sdk/newfang-downloader.js"></script>
+//For single file uploads
 <script src="../path/to/sdk/newfang-uploader.js"></script>
+//For generating URLs to place in HTML media tags
 <script src="../path/to/sdk/newfang_utils.js"></script>
+//For single file deletion
+<script src="../path/to/sdk/newfang_store.js"></script>
 ```
 
-#### Uploader
+### Uploader
 
 {% hint style="info" %}
 Newfang uses a combination of your file's content hash and a convergence key to identify your file. The SDK exposes a method to generate this convergence key where you can specify: 
@@ -35,8 +40,6 @@ Call _generate\_convergence\(\)_ once per user and store the _convergence_ again
 All files are duplicated. The same user can upload the same file multiple times and they would be treated as separate copies.  
 Call _generate\_convergence\(\)_ each time you upload a file and store the _convergence_ against that file.
 {% endhint %}
-
-
 
 ```javascript
 const Uploader = window.newfang_uploader.default;
@@ -70,7 +73,9 @@ uploader.on("upload_complete", (uri) => {
 uploader.start_upload();
 ```
 
-#### Downloader
+### Downloader
+
+To download a single file.
 
 ```javascript
 const Downloader = window.newfang_downloader.default;
@@ -109,7 +114,80 @@ downloader.on("download_complete", () => {
 downloader.start_download("file_name_with_extension")
 ```
 
-#### Delete
+### Store
+
+To dynamically generate one or more urls to place in HTML media tags\(img/video/audio\) and fetch the media file.
+
+{% hint style="info" %}
+Store is still in deep development at Newfang and unlike with Uploader/Downloader/Delete, you won't see any requests or charges on the developer portal.
+{% endhint %}
+
+#### _Vanilla JS \(without templating\)_
+
+```markup
+<img id="logo" alt="logo">
+<img id="distribute" alt="distribute">
+<img id="encode" alt="encode">
+```
+
+```javascript
+const store = window.newfang_store.default;
+// Add multiple
+store.add_elements([
+    {
+        id: "logo",
+        uri: "URI:CHK:c45cue4enyg5doowa7lyr7apdi:ibj3ely2z22el2trz3iqf74uyicxo4ie4q3hiuhhhxwgdqysweha:2:4:2610",
+        name: "newfang.svg"
+    },
+    {
+        id: "distribute",
+        uri: "URI:CHK:ptamnnvfack3ivqmkhmbwc73dm:vpwwlwxvbsnoujvuhc37uqoca35kahl3qor46wic5pumqrqs6zka:2:4:4325",
+        name: "distribute.svg"
+    },
+    {
+        id: "encode",
+        uri: "URI:CHK:xpxqtd4zhal6pyg34zqla4in6a:cpej36ass5lprdw3xwrqwwy3iw7bssnxbt7zcaneyvbiflnqhhmq:2:4:1556",
+        name: "encode.svg"
+    }
+]);
+
+// Or one at a time
+store.add_element({
+    id: "logo",
+    uri: "URI:CHK:c45cue4enyg5doowa7lyr7apdi:ibj3ely2z22el2trz3iqf74uyicxo4ie4q3hiuhhhxwgdqysweha:2:4:2610",
+    name: "newfang.svg"
+});
+```
+
+#### _Vue_
+
+```markup
+<img :src=get_url(x,y) />
+```
+
+```javascript
+const store = window.newfang_store.default;
+
+function get_url(uri,name) {
+    store.get_url({ uri, filename: name });
+}
+```
+
+#### _React_
+
+```markup
+<img src={get_url(x,y)} />
+```
+
+```javascript
+const store = window.newfang_store.default;
+
+function get_url(uri,name) {
+    store.get_url({ uri, filename: name });
+}
+```
+
+### Delete
 
 ```javascript
 const Utils = window.newfang_utils.default;
@@ -133,7 +211,7 @@ util.on("success", () => {
 util.start_delete(callback);
 ```
 
-#### Remember
+### Remember
 
 * Call the convergence once or multiple times depending on your apps use case.
 * Pass in the correct convergence in order to correctly upload/delete a file.
