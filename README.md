@@ -1,5 +1,12 @@
 # Getting started
 
+{% hint style="danger" %}
+While in private alpha, you should expect bugs and us hard at work fixing them. Server restarts, purging and data loss are commonplace so  
+- DO NOT use in production or in critical dev environments.  
+- DO NOT upload any critical files  
+- DO NOT share an information like passwords, payment details etc... on any part of the system.
+{% endhint %}
+
 {% hint style="info" %}
 We are in private alpha and have a waitlist of developers who want to try us out. During our alpha, all uploads and downloads are free of cost.
 {% endhint %}

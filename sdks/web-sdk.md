@@ -17,9 +17,9 @@ Add the libraries you need in your html.
 <script src="../path/to/sdk/newfang-downloader.js"></script>
 //For single file uploads
 <script src="../path/to/sdk/newfang-uploader.js"></script>
-//For generating URLs to place in HTML media tags
-<script src="../path/to/sdk/newfang_utils.js"></script>
 //For single file deletion
+<script src="../path/to/sdk/newfang_utils.js"></script>
+//For generating URLs to place in HTML media tags
 <script src="../path/to/sdk/newfang_store.js"></script>
 ```
 
